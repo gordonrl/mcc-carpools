@@ -8,9 +8,11 @@ The basic idea of this software is to make creating carpools as fair as possible
 Once again, congratulations, and if you have any questions feel free to email me at gordonrl@umich.edu
 
 # How to use
-1. Start by following the steps up to and including "Select a Python interpreter" here: https://code.visualstudio.com/docs/python/python-tutorial. This will either be a lot to do or a little depending on your prior coding experience. ***THIS STEP ONLY HAS TO BE DONE ONCE***
+1. Start by following the steps up to and including "Select a Python interpreter" here: https://code.visualstudio.com/docs/python/python-tutorial. This will either be a lot to do or a little depending on your prior coding experience.
 
 2. Download this program from GitHub (if you're reading this from the README.md you're in the right place, otherwise: https://github.com/gordonrl/mcc-carpools) and store it wherever you want on your computer as long as you can access it. To do this press "<> Code>" then "Download ZIP"
+
+***STEPS 1 AND 2 ONLY HAVE TO BE DONE ONCE -- ON YOUR FIRST TIME SETTING UP THE PROGRAM***
 
 3. Open VSCode, select "Open" on the welcome screen and navigate to the download from the previous step. If you already have a project open on VSCode either do "file"->"new window" to open the program but keep your previous project open or "file"->"open folder" to just open this program (This is on mac, I'm not entirely sure how this part would work on Windows unfortunately).
 
@@ -19,7 +21,7 @@ TODO: FINISH WRITING
 
 
 # How it works
-***This section is just explaining all the nerdy CS stuff going on under the hood, feel free to skip over it if you're not interested, but it could be useful if you want to make any tweaks in the future! (P.S. This is my first project in Python so I apologize for any poor practices, hopefully it is adequately commented and still readable!)***
+***This section is just explaining all the nerdy CS stuff going on under the hood, feel free to skip over it if you're not interested, but it could be useful if you want to make any tweaks in the future!***
 
 Google forms allows you to download responses in the form of a csv (comma separated values) file, which allows two conveniences:
 
@@ -29,4 +31,8 @@ Google forms allows you to download responses in the form of a csv (comma separa
 
 
 TODO: Explain the rest once you actually write the program
+
+*P.S. This is my first Python project so if there are some poor practices I apologize! I heavily commented my code so I hope it is still readable and understandable for future carpool-makers who care to inspect it!!!*
+
+*P.P.S. I'm sure there are faster, more streamlined ways to do this (ex: Makefile, command line funny business, Pipenv) but one of the problems with the previous carpool system was that it was very confusing and difficult to set up, even for people who kind of knew what they were doing (me!). So for this reason I decided to make some sacrifices in gracefulness and beauty in order to hopefully have it be more accessible and easier to use for future carpool-makers even if they don't know anything about coding. *
 
