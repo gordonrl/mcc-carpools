@@ -20,7 +20,7 @@ TODO: FINISH WRITING
 
 
 
-# How it works
+# How it works (Optional)
 ***This section is just explaining all the nerdy CS stuff going on under the hood, feel free to skip over it if you're not interested, but it could be useful if you want to make any tweaks in the future!***
 
 Google forms allows you to download responses in the form of a csv (comma separated values) file, which allows two conveniences:
