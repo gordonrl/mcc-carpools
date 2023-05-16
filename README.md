@@ -10,7 +10,7 @@ Once again, congratulations, and if you have any questions feel free to email me
 # How to use
 1. Start by following the steps up to and including "Select a Python interpreter" here: https://code.visualstudio.com/docs/python/python-tutorial. This will either be a lot to do or a little depending on your prior coding experience.
 
-2. Download this program from GitHub (if you're reading this from the README.md you're in the right place, otherwise: https://github.com/gordonrl/mcc-carpools) and store it wherever you want on your computer as long as you can access it. To do this press "<> Code>" then "Download ZIP"
+2. Download this program from GitHub (Here's the link if you're reading this on Google Docs: https://github.com/gordonrl/mcc-carpools) and store it wherever you want on your computer as long as you can access it. To do this press "<> Code>" then "Download ZIP"
 
 ***STEPS 1 AND 2 ONLY HAVE TO BE DONE ONCE -- ON YOUR FIRST TIME SETTING UP THE PROGRAM***
 
