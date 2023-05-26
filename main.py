@@ -26,4 +26,22 @@ sun_loc = "Where are you leaving from on Sunday?"
 
 #RN (maybe permanently) TO RUN PRESS CONTROL F5 WHILE IN MAIN.PY!!!!
 
+#These lists are what people will go into 
+tuesday_drivers = []
+tuesday_riders = []
+thursday_drivers = []
+thursday_riders = []
+sunday_drivers = []
+sunday_riders = []
 
+#This whole section reads in all of the responses
+#and populates the above lists with all the necessary information
+with open("responses.csv") as response_file:
+    #reads in responses.csv as a dictionary
+    responses = csv.DictReader(response_file)
+    from functions import make_tuesday, make_sunday, make_thursday
+    make_tuesday(tuesday_drivers, tuesday_riders, responses)
+    make_thursday(thursday_drivers, thursday_riders, responses)
+    make_sunday(sunday_drivers, sunday_riders, responses)
+
+#The next step is parsing through lists to actually create carpools

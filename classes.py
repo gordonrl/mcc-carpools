@@ -26,6 +26,7 @@ class Driver:
 #Such as whether or not they're dues paying and if they've already been in a car during the week
 #The __str()__ function will hopefully work the same as with the driver class
 class Rider:
+    #constructor
     def __init__(self, name, number, location):
         self.name = name
         self.num = number
