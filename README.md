@@ -5,16 +5,17 @@ I hope that all of the steps are very clear and easy, even if you don't have any
 
 The basic idea of this software is to make creating carpools as fair as possible through as much randomization as possible. When I wrote this (the summer before the 2023-2024 school year) the EBoard (The Haddie Ketzenberger Administration) decided that the most fair choice was to **only create carpools for 6:45 departures on Tuesdays and Thursdays, and 9:45 for Sundays, reduce the likelyhood of someone being in a car twice in one week if there are others who have not already been selected, and to give dues paying members priority** So if anyone asks, that's how this system works.
 
-Once again, congratulations, and if you have any questions feel free to email me at gordonrl@umich.edu
+Once again congratulations, and if you have any questions feel free to email me at gordonrl@umich.edu
 
 # How to use
-1. Start by following the steps up to and including "Select a Python interpreter" here: https://code.visualstudio.com/docs/python/python-tutorial. This will either be a lot to do or a little depending on your prior coding experience.
+## Setup
+***These only have to be done once -- your first time setting up the program***
+1. Download this program from GitHub (Here's the link if you're reading this on Google Docs: https://github.com/gordonrl/mcc-carpools) and store it wherever you want on your computer as long as you can access it. To do this press "<> Code" then "Download ZIP
 
-2. Download this program from GitHub (Here's the link if you're reading this on Google Docs: https://github.com/gordonrl/mcc-carpools) and store it wherever you want on your computer as long as you can access it. To do this press "<> Code>" then "Download ZIP"
+2. Follow the steps up to and including "Select a Python interpreter" here: https://code.visualstudio.com/docs/python/python-tutorial. This is pretty short but it will be longer and a little more confusing if you don't have coding experience. Just type what it tells you to type where it tells you to type it and you should be fine. **For the section titled "Start VS Code in a workspace folder" open mcc_carpools (the file you downloaded in step one) rather than creating a new one like they say to.**
 
-***STEPS 1 AND 2 ONLY HAVE TO BE DONE ONCE -- ON YOUR FIRST TIME SETTING UP THE PROGRAM***
-
-3. Open VSCode, select "Open" on the welcome screen and navigate to the download from the previous step. If you already have a project open on VSCode either do "file"->"new window" to open the program but keep your previous project open or "file"->"open folder" to just open this program (This is on mac, I'm not entirely sure how this part would work on Windows unfortunately).
+## Standard Usage
+1. **You can skip this step if you already have mcc_carpools open in VSCode** Open VSCode, select "Open" on the welcome screen and navigate to the download from the previous step. If you already have a project open on VSCode either do "file"->"new window" to open the program but keep your previous project open or "file"->"open folder" to just open this program (This is on mac, I'm not familiar with VSCode file navigation on windows).
 
 TODO: FINISH WRITING
 
