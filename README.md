@@ -10,9 +10,9 @@ Once again congratulations, and if you have any questions feel free to email me 
 # How to use
 ## Setup
 ***These only have to be done once -- your first time setting up the program***
-1. Download this program from GitHub (Here's the link if you're reading this on Google Docs: https://github.com/gordonrl/mcc-carpools) and store it wherever you want on your computer as long as you can access it. To do this press "<> Code" then "Download ZIP
+1. Download this program from GitHub (Here's the link if you're reading this on Google Docs: https://github.com/gordonrl/mcc-carpools) and store it wherever you want on your computer as long as you can access it. To do this press "<> Code" then "Download ZIP" This will be called "mcc-carpools-main" when you download it. Feel free to rename it to whatever you want or leave it be.
 
-2. Follow the steps up to and including "Select a Python interpreter" here: https://code.visualstudio.com/docs/python/python-tutorial. This is pretty short but it will be longer and a little more confusing if you don't have coding experience. Just type what it tells you to type where it tells you to type it and you should be fine. **For the section titled "Start VS Code in a workspace folder" open mcc_carpools (the file you downloaded in step one) rather than creating a new one like they say to.**
+2. Follow the steps up to and including "Select a Python interpreter" here: https://code.visualstudio.com/docs/python/python-tutorial. This is pretty short but it will be longer and a little more confusing if you don't have coding experience. Just type what it tells you to type where it tells you to type it and you should be fine. **For the section titled "Start VS Code in a workspace folder" open "mcc-carpools-main" (Or whatever you renamed it to -- i.e. the file you downloaded in step one) rather than creating a new one like they say to.**
 
 ## Standard Usage
 1. **You can skip this step if you already have mcc_carpools open in VSCode** Open VSCode, select "Open" on the welcome screen and navigate to the download from the previous step. If you already have a project open on VSCode either do "file"->"new window" to open the program but keep your previous project open or "file"->"open folder" to just open this program (This is on mac, I'm not familiar with VSCode file navigation on windows).

@@ -24,5 +24,6 @@ thurs_loc = "Where are you leaving from on Thursday?"
 sun_choice = "Will you be driving or riding on Sunday?"
 sun_loc = "Where are you leaving from on Sunday?"
 
+#RN (maybe permanently) TO RUN PRESS CONTROL F5 WHILE IN MAIN.PY!!!!
 
 
