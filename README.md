@@ -38,8 +38,12 @@ Once again congratulations, and if you have any questions feel free to email me 
 10. Repeat weekly
 
 # FAQ
+
+## Why do I only get in a car once a week?
+To increase the number of people who get to go climbing, you're less likely to be put in a car on a second day if you're already in one. Other than this and the location you say you leave from, the process is entirely random.
+
 ## Why am I never picked?
-The most likely cause of this is that your uniqname in the carpool Google form does not match your uniqname in the list of dues paying members (or you're not a dues paying member)
+The most likely cause of this is that your uniqname in the carpool Google form does not match your uniqname in the list of dues paying members (or you're not a dues paying member). Both the list of dues paying members and your uniqname from the Google Form are made lowercase before checking, so the issue would be a typo.
 
 
 # How it works (Optional)

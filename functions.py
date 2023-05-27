@@ -15,7 +15,9 @@ car_info = "Car model and color"
 car_capacity = "How many people can you fit (not including yourself)?"
 
 #This makes the list of dues members a set so names can easily be checked
-dues_list = set(line.strip() for line in open("dues.csv"))
+#also makes the uniqnames lowercase to reduce the chances of someone being 
+#incorrectly marked as not in the list
+dues_list = set(line.strip() and line.lower() for line in open("dues.csv"))
 
 #These are functions that are used in main
 #This function populates the tuesday_drivers and tuesday_riders list
