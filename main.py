@@ -1,47 +1,36 @@
 import csv
-from classes import Driver
-from classes import Rider
+from classes import *
+from functions import *
 
 #REMEMBER: People in one car are less likely to be in another
 #CHECK DUES PAYING MEMBERS!!!!!!
 
-#In order to make the form well-written for people filling it out 
-#some of the dictionary keys (questions on the form) are long
-#So here are some global variables to make thing shorter
-
-#I know there's a bunch of them but it makes things easier
-
-uniqname = "Uniqname"
-name = "Name"
-number = "Phone Number"
-driving_this_week = "Will you be driving on at least 1 day this week?"
-car_info = "Car model and color"
-car_capacity = "How many people can you fit (not including yourself)?"
-tues_choice = "Will you be driving or riding on Tuesday?"
-tues_loc = "Where are you leaving from on Tuesday?"
-thurs_choice = "Will you be driving or riding on Thursday?"
-thurs_loc = "Where are you leaving from on Thursday?"
-sun_choice = "Will you be driving or riding on Sunday?"
-sun_loc = "Where are you leaving from on Sunday?"
-
 #RN (maybe permanently) TO RUN PRESS CONTROL F5 WHILE IN MAIN.PY!!!!
 
 #These lists are what people will go into 
+#The dues ones are only for riders on the given day
+#Dues ones are sets so lookup is easy and people can easily be taken out of them
 tuesday_drivers = []
 tuesday_riders = []
+tues_dues = set()
+
 thursday_drivers = []
 thursday_riders = []
+thurs_dues = set()
+
 sunday_drivers = []
 sunday_riders = []
+sun_dues = set()
 
 #This whole section reads in all of the responses
 #and populates the above lists with all the necessary information
 with open("responses.csv") as response_file:
     #reads in responses.csv as a dictionary
     responses = csv.DictReader(response_file)
-    from functions import make_tuesday, make_sunday, make_thursday
-    make_tuesday(tuesday_drivers, tuesday_riders, responses)
-    make_thursday(thursday_drivers, thursday_riders, responses)
-    make_sunday(sunday_drivers, sunday_riders, responses)
+    make_tuesday_lists(tuesday_drivers, tuesday_riders, tues_dues, responses)
+    make_thursday_lists(thursday_drivers, thursday_riders, thurs_dues, responses)
+    make_sunday_lists(sunday_drivers, sunday_riders, sun_dues, responses)
 
 #The next step is parsing through lists to actually create carpools
+#This is done through calling functions so if there's no one to 
+#drive for a given day it's easily dealt with
