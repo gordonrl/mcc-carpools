@@ -11,11 +11,14 @@ class Driver:
         #car_info = color and model
         self.info = car_info
         self.uniqname = uniq
+
+        #This starts as False but will be changed to true for Sunday
+        self.sunday = False
     
     #This will change when I know what I'm doing more
     #The hope is that this will be able to let me output everything needed for the driver in nice pretty csv format
-    def __str__(self, day):
-        if day == "Thursday" or day == "Tuesday":
+    def __str__(self):
+        if not self.sunday:
             return f"Driver,{self.name},{self.info},{self.num},6:45,{self.loc},"
         else:
             return f"Driver{self.name},{self.info},{self.num},9:45,{self.loc},"

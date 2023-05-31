@@ -47,28 +47,28 @@ def make_lists(responses):
         #For each day this determines if the person is a rider or
         #driver and populates the corresponding list(s)
         if tues == "Driving":
-            tues_driver = Driver(person[name], person[number], person[car_capacity], person[tues_loc], person[car_info])
+            tues_driver = Driver(person[name], person[number], person[car_capacity], person[tues_loc], person[car_info], person[uniqname])
             tuesday_drivers.append(tues_driver)
         elif tues == "Riding":
-            tues_rider = Rider(person[name], person[number], person[tues_loc])
+            tues_rider = Rider(person[name], person[number], person[tues_loc], person[uniqname])
             tuesday_riders.append(tues_rider)
         #Tuesday Done
 
         #Thursday:
         if thurs == "Driving":
-            thurs_driver = Driver(person[name], person[number], person[car_capacity], person[thurs_loc], person[car_info])
+            thurs_driver = Driver(person[name], person[number], person[car_capacity], person[thurs_loc], person[car_info], person[uniqname])
             thursday_drivers.append(thurs_driver)
         elif thurs == "Riding":
-            thurs_rider = Rider(person[name], person[number], person[thurs_loc])
+            thurs_rider = Rider(person[name], person[number], person[thurs_loc], person[uniqname])
             thursday_riders.append(thurs_rider)
         #Done with thursday
 
         #Sunday:
         if sun == "Driving":
-            sun_driver = Driver(person[name], person[number], person[car_capacity], person[sun_loc], person[car_info])
+            sun_driver = Driver(person[name], person[number], person[car_capacity], person[sun_loc], person[car_info], person[uniqname])
             sunday_drivers.append(sun_driver)
         elif sun == "Riding":
-            sun_rider = Rider(person[name], person[number], person[sun_loc])
+            sun_rider = Rider(person[name], person[number], person[sun_loc], person[uniqname])
             sunday_riders.append(sun_rider)
         #Done with sunday
 
@@ -91,7 +91,7 @@ def make_lists(responses):
 #incorrectly marked as not in the list
 dues_list = set(line.strip() and line.lower() for line in open("dues.csv"))
 
-header = ",Name,Car Type,Phone Number,Departure Time, Location,Notes\n"
+header = ",Name,Car Type,Phone Number,Departure Time,Location,Notes\n"
 
 #This is a new set to keep track of riders that have
 #Already been put in a car at some point during the week
@@ -105,98 +105,99 @@ north = "North Campus (Pierpont)"
 #It will write tuesday.csv to be ready for uploading to Google Sheets
 def make_tuesday():
     #The sheet header is always written
-    with open("tuesday.csv") as tuesday:
-        tuesday.write("MCC Carpool Lists -- TUESDAY\n\n\n")
-    #If tuesday_drivers is empty then there's no one to drive anyone
-    #And nothing is added to the sheet
-    if not tuesday_drivers:
-        return
-    #If there's no one in riders then the drivers will still be added
-    #So people can add themselves after the sheet comes out
-    #Because the above conditional would return it's implied that tuesday_drivers
-    #isn't empty if we get to this point
-    if not tuesday_riders:
-        for driver in tuesday_drivers:
-            #start by writing the header
-            tuesday.write(header)
-            #write the info of the driver (the __str__ class method makes this easy!!!!)
-            tuesday.write(str(driver, "Tuesday"))
-            #want to make new lines in the csv for each spot that a rider could sign up for
-            for _ in range(driver.cap):
-                tuesday.write("\n")
-    #By the same logic commented above we know that tuedsay_riders and tuesday_drivers
-    #are populated if this point is reached
-    else:
-        #First want to separate tues_riders list and tues_dues set into separate
-        #Ones based on location
-        north_riders = [], central_riders = []
-        north_dues = set()
-        central_dues = set()
-        for rider in tuesday_riders:
-            if rider.loc == central:
-                central_riders.append(rider)
-                if rider.uniqname.lower() in dues_list:
-                    central_dues.add(rider.uniqname)
-            else:
-                north_riders.append(rider)
-                if rider.uniqname.lower() in dues_list:
-                    north_dues.add(rider.uniqname)
-        
-        #Second step is the same as above conditional: Write the header then driver's info
-        for driver in tuesday_drivers:
-            tuesday.write(header)
-            tuesday.write(str(driver, "Tuesday"))
+    with open("tuesday.csv", "w") as tuesday:
+        tuesday.write("TUESDAY\n\n\n")
+        #If tuesday_drivers is empty then there's no one to drive anyone
+        #And nothing is added to the sheet
+        if not tuesday_drivers:
+            return
+        #If there's no one in riders then the drivers will still be added
+        #So people can add themselves after the sheet comes out
+        #Because the above conditional would return it's implied that tuesday_drivers
+        #isn't empty if we get to this point
+        if not tuesday_riders:
+            for driver in tuesday_drivers:
+                #start by writing the header
+                tuesday.write(header)
+                #write the info of the driver (the __str__ class method makes this easy!!!!)
+                tuesday.write(str(driver))
+                #want to make new lines in the csv for each spot that a rider could sign up for
+                for _ in range(driver.cap):
+                    tuesday.write("\n")
+        #By the same logic commented above we know that tuedsay_riders and tuesday_drivers
+        #are populated if this point is reached
+        else:
+            #First want to separate tues_riders list and tues_dues set into separate
+            #Ones based on location
+            north_riders = []
+            central_riders = []
+            north_dues = set()
+            central_dues = set()
+            for rider in tuesday_riders:
+                if rider.loc == central:
+                    central_riders.append(rider)
+                    if rider.uniqname.lower() in dues_list:
+                        central_dues.add(rider.uniqname)
+                else:
+                    north_riders.append(rider)
+                    if rider.uniqname.lower() in dues_list:
+                        north_dues.add(rider.uniqname)
+            
+            #Second step is the same as above conditional: Write the header then driver's info
+            for driver in tuesday_drivers:
+                tuesday.write(header)
+                tuesday.write(str(driver))
 
-            location = driver.loc
-            #Adding riders is different because a lot of checks need to be made
-            for _ in range(driver.cap):
-                #The next steps are basically the same but location dependent
-                if location == central:
-                    #If central_riders is empty then just write newlines and move on
-                    if not central_riders:
-                        tuesday.write("\n")
-                        continue
+                location = driver.loc
+                #Adding riders is different because a lot of checks need to be made
+                for _ in range(driver.cap):
+                    #The next steps are basically the same but location dependent
+                    if location == central:
+                        #If central_riders is empty then just write newlines and move on
+                        if not central_riders:
+                            tuesday.write("\n")
+                            continue
 
-                    #randint is inclusive but lists are 0-indexed so we
-                    #want to go random to the size of central_riders - 1
-                    index = random.randint(0, range(central_riders) - 1)
-                    curr_rider = central_riders[index]
-
-                    #need to make sure that dues paying members get priority
-                    while not(curr_rider.uniqname in central_dues) and len(central_dues) != 0:
+                        #randint is inclusive but lists are 0-indexed so we
+                        #want to go random to the size of central_riders - 1
                         index = random.randint(0, range(central_riders) - 1)
                         curr_rider = central_riders[index]
 
-                    #Curr_rider can then be added to the spreadsheet and removed from
-                    #central_dues and central_riders
-                    tuesday.write(str(curr_rider))
-                    rode.add(curr_rider.uniqname)
-                    central_riders.pop(index)
-                    if curr_rider.uniqname in central_dues:
-                        central_dues.remove(curr_rider.uniqname)
-                
-                #Same steps for north campus
-                else:
-                    if not north_riders:
-                        tuesday.write("\n")
-                        continue
-                    #randint is inclusive but lists are 0-indexed so we
-                    #want to go random to the size of central_riders - 1
-                    index = random.randint(0, range(north_riders) - 1)
-                    curr_rider = north_riders[index]
+                        #need to make sure that dues paying members get priority
+                        while not(curr_rider.uniqname in central_dues) and len(central_dues) != 0:
+                            index = random.randint(0, range(central_riders) - 1)
+                            curr_rider = central_riders[index]
 
-                    #need to make sure that dues paying members get priority
-                    while not(curr_rider.uniqname in north_dues) and len(north_dues) != 0:
+                        #Curr_rider can then be added to the spreadsheet and removed from
+                        #central_dues and central_riders
+                        tuesday.write(str(curr_rider))
+                        rode.add(curr_rider.uniqname)
+                        central_riders.pop(index)
+                        if curr_rider.uniqname in central_dues:
+                            central_dues.remove(curr_rider.uniqname)
+                    
+                    #Same steps for north campus
+                    else:
+                        if not north_riders:
+                            tuesday.write("\n")
+                            continue
+                        #randint is inclusive but lists are 0-indexed so we
+                        #want to go random to the size of central_riders - 1
                         index = random.randint(0, range(north_riders) - 1)
                         curr_rider = north_riders[index]
 
-                    #Curr_rider can then be added to the spreadsheet and removed from
-                    #central_dues and central_riders
-                    tuesday.write(str(curr_rider))
-                    rode.add(curr_rider.uniqname)
-                    north_riders.pop(index)
-                    if curr_rider.uniqname in north_dues:
-                        north_dues.remove(curr_rider.uniqname)
+                        #need to make sure that dues paying members get priority
+                        while not(curr_rider.uniqname in north_dues) and len(north_dues) != 0:
+                            index = random.randint(0, range(north_riders) - 1)
+                            curr_rider = north_riders[index]
+
+                        #Curr_rider can then be added to the spreadsheet and removed from
+                        #central_dues and central_riders
+                        tuesday.write(str(curr_rider))
+                        rode.add(curr_rider.uniqname)
+                        north_riders.pop(index)
+                        if curr_rider.uniqname in north_dues:
+                            north_dues.remove(curr_rider.uniqname)
 
 
 
