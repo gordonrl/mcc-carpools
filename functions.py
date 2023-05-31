@@ -122,7 +122,7 @@ def make_tuesday():
                 #write the info of the driver (the __str__ class method makes this easy!!!!)
                 tuesday.write(str(driver))
                 #want to make new lines in the csv for each spot that a rider could sign up for
-                for _ in range(driver.cap):
+                for _ in range(int(driver.cap)):
                     tuesday.write("\n")
         #By the same logic commented above we know that tuedsay_riders and tuesday_drivers
         #are populated if this point is reached
@@ -150,7 +150,7 @@ def make_tuesday():
 
                 location = driver.loc
                 #Adding riders is different because a lot of checks need to be made
-                for _ in range(driver.cap):
+                for _ in range(int(driver.cap)):
                     #The next steps are basically the same but location dependent
                     if location == central:
                         #If central_riders is empty then just write newlines and move on
@@ -160,7 +160,7 @@ def make_tuesday():
 
                         #randint is inclusive but lists are 0-indexed so we
                         #want to go random to the size of central_riders - 1
-                        index = random.randint(0, range(central_riders) - 1)
+                        index = random.randint(0, len(central_riders) - 1)
                         curr_rider = central_riders[index]
 
                         #need to make sure that dues paying members get priority
@@ -183,7 +183,7 @@ def make_tuesday():
                             continue
                         #randint is inclusive but lists are 0-indexed so we
                         #want to go random to the size of central_riders - 1
-                        index = random.randint(0, range(north_riders) - 1)
+                        index = random.randint(0, len(north_riders) - 1)
                         curr_rider = north_riders[index]
 
                         #need to make sure that dues paying members get priority
@@ -198,6 +198,8 @@ def make_tuesday():
                         north_riders.pop(index)
                         if curr_rider.uniqname in north_dues:
                             north_dues.remove(curr_rider.uniqname)
+                #Lastly a newline for spreadsheet formatting
+                tuesday.write("\n\n")
 
 
 
