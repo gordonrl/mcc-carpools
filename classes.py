@@ -3,18 +3,22 @@
 #information for the spreadsheet in the proper csv format!!!! Python is sick
 class Driver:
     #Constructor
-    def __init__(self, name, number, capacity, location, car_info):
+    def __init__(self, name, number, capacity, location, car_info, uniq):
         self.name = name
         self.num = number
         self.cap = capacity
         self.loc = location
         #car_info = color and model
         self.info = car_info
+        self.uniqname = uniq
     
     #This will change when I know what I'm doing more
     #The hope is that this will be able to let me output everything needed for the driver in nice pretty csv format
-    def __str__(self):
-        return f"{self.name}"
+    def __str__(self, day):
+        if day == "Thursday" or day == "Tuesday":
+            return f"Driver,{self.name},{self.info},{self.num},6:45,{self.loc},"
+        else:
+            return f"Driver{self.name},{self.info},{self.num},9:45,{self.loc},"
     
 
 #The rider class is very similar to the driver class in that it's just storing useful information
@@ -22,14 +26,15 @@ class Driver:
 #The __str()__ function will hopefully work the same as with the driver class
 class Rider:
     #constructor
-    def __init__(self, name, number, location):
+    def __init__(self, name, number, location, uniq):
         self.name = name
         self.num = number
         self.loc = location
+        self.uniqname = uniq
     
     #Just like Driver this will hopefully be changed to print out everything 
     #in pretty csv format to make this program nice and modular
     def __str__(self):
-        return f"{self.name}"
+        return f"\nRider,{self.name},,{self.num},,{self.loc}"
 
     
