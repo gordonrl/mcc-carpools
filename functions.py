@@ -2,17 +2,6 @@ from classes import Driver
 from classes import Rider
 import random
 
-#In order to make the form well-written for people filling it out 
-#some of the dictionary keys (questions on the form) are long
-#So here are some global variables to make thing shorter
-
-uniqname = "Uniqname"
-name = "Name"
-number = "Phone Number"
-driving_this_week = "Will you be driving on at least 1 day this week?"
-car_info = "Car model and color"
-car_capacity = "How many people can you fit (not including yourself)?"
-
 #These lists are what people will go into 
 #The dues ones are only for riders on the given day
 #Dues ones are sets so lookup is easy and people can easily be taken out of them
@@ -25,10 +14,19 @@ thursday_riders = []
 sunday_drivers = []
 sunday_riders = []
 
+#Allows easy lookup of dues paying members
+dues_list = set(line.lower() and line.strip("\n") for line in open("dues.csv"))
+
 #This is the function that will populate the lists
 #It iterates through the responses and populates each list
 #and set as parameters are met
 def make_lists(responses):
+    uniqname = "Uniqname"
+    name = "Name"
+    number = "Phone Number"
+    driving_this_week = "Will you be driving on at least 1 day this week?"
+    car_info = "Car model and color"
+    car_capacity = "How many people can you fit (not including yourself)?"
     #Some local variables to make things cleaner
     tues_choice = "Will you be driving or riding on Tuesday?"
     tues_loc = "Where are you leaving from on Tuesday?"
@@ -86,10 +84,6 @@ def make_lists(responses):
 #Once added, riders are removed from the lists so there aren't any repeats
 #Location is taken into account as well don't worry!
 
-#This makes the list of dues members a set so names can easily be checked
-#also makes the uniqnames lowercase to reduce the chances of someone being 
-#incorrectly marked as not in the list
-dues_list = set(line.strip() and line.lower() for line in open("dues.csv"))
 
 header = ",Name,Car Type,Phone Number,Departure Time,Location,Notes\n"
 
@@ -165,7 +159,7 @@ def make_tuesday():
 
                         #need to make sure that dues paying members get priority
                         while not(curr_rider.uniqname in central_dues) and len(central_dues) != 0:
-                            index = random.randint(0, range(central_riders) - 1)
+                            index = random.randint(0, len(central_riders) - 1)
                             curr_rider = central_riders[index]
 
                         #Curr_rider can then be added to the spreadsheet and removed from
@@ -188,7 +182,7 @@ def make_tuesday():
 
                         #need to make sure that dues paying members get priority
                         while not(curr_rider.uniqname in north_dues) and len(north_dues) != 0:
-                            index = random.randint(0, range(north_riders) - 1)
+                            index = random.randint(0, len(north_riders) - 1)
                             curr_rider = north_riders[index]
 
                         #Curr_rider can then be added to the spreadsheet and removed from

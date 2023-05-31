@@ -3,20 +3,20 @@ TUESDAY
 
 ,Name,Car Type,Phone Number,Departure Time,Location,Notes
 Driver,Camille West,grey honda crv,2482273669,6:45,Central Campus (The Cube),
+Rider,Gordon,,7343555358,,Central Campus (The Cube)
 Rider,Hadley Ketzenberger ,,906-250-5829,,Central Campus (The Cube)
 Rider,test,,6373774,,Central Campus (The Cube)
 Rider,ab cd,,1234,,Central Campus (The Cube)
-Rider,Snoop dog,,4325617890,,Central Campus (The Cube)
 
 ,Name,Car Type,Phone Number,Departure Time,Location,Notes
 Driver,norf norf,gold honda accord,3735158,6:45,North Campus (Pierpont),
-Rider,Gregory,,7348889980,,North Campus (Pierpont)
 Rider,Alez ,,6147689945,,North Campus (Pierpont)
+Rider,Gregory,,7348889980,,North Campus (Pierpont)
 Rider,Aristotle,,1234567890,,North Campus (Pierpont)
 
 ,Name,Car Type,Phone Number,Departure Time,Location,Notes
 Driver,Hadley Ketzenberger,Silver mazda5,906-250-5829,6:45,Central Campus (The Cube),
-Rider,Gordon,,7343555358,,Central Campus (The Cube)
+Rider,Snoop dog,,4325617890,,Central Campus (The Cube)
 Rider,Shaquille ONeill ,,0987654321,,Central Campus (The Cube)
 
 
