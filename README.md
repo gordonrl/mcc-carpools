@@ -61,7 +61,13 @@ Google forms allows you to download responses in the form of a csv (comma separa
 2. Google sheets can be imported as csv files!! This means that as the program figures out cars it can write csv file(s) that can easily be sent to a sharable google sheet!
 
 
-TODO: Explain the rest once you actually write the program
+Hopefully the commenting in my actual code explains everything that I'm going to explain here but if not then hopefully this will clear everything up.
+
+The first thing I do is create lists for the riders and drivers for each day of the week. These are global variables because a single function appends people to all of them (make_lists) but individual ones need to be used for specific functions later on (the make_day functions). The reason I don't have separate list-populating functions for each day has to do with iteration through responses.csv. I wasn't able to restart at the top of the file when trying to read it for the next day, this also saves time because I'm not iterating through responses.csv three separate times (O(n) vs O(3n) does technically make a difference. It definitely is negligible for this program as responses.csv will probably never have millions of items but it's good practice regardless).
+
+For reading each response I can use square brackets to check if each person is either riding, driving, or not going on each given day (the make_lists function). If the person is going on the given day then I create an instance of either the Rider or Driver class (see classes.py) and append it to the list. Each class holds information necessary for printing onto the spreadsheet such as car capacity and location. Additionally I specify how to write each class as a string so that they can be easily printed in the future. This includes also means that a boolean is needed for drivers to tell whether or not it's sunday because the time is different when printing the class as a string.
+
+The next step is to actually create the spreasheets for each day.
 
 *P.S. This is my first Python project so if there are some poor practices I apologize! I heavily commented my code so I hope it is still readable and understandable for future carpool-makers who care to inspect it!!!*
 
