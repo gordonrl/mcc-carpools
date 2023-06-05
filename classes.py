@@ -10,7 +10,7 @@ class Driver:
         self.loc = location
         #car_info = color and model
         self.info = car_info
-        self.uniqname = uniq
+        self.uniqname = uniq.lower()
 
         #This starts as False but will be changed to true for Sunday
         self.sunday = False
