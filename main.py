@@ -23,3 +23,4 @@ with open("responses.csv") as response_file:
 #This also requires another set to keep track of riders who have already
 #been assigned to a car in a previous day
 make_tuesday()
+make_thursday()

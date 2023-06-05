@@ -25,7 +25,6 @@ def make_lists(responses):
     uniqname = "Uniqname"
     name = "Name"
     number = "Phone Number"
-    driving_this_week = "Will you be driving on at least 1 day this week?"
     car_info = "Car model and color"
     car_capacity = "How many people can you fit (not including yourself)?"
     #Some local variables to make things cleaner
@@ -85,7 +84,7 @@ def make_lists(responses):
 #Once added, riders are removed from the lists so there aren't any repeats
 #Location is taken into account as well don't worry!
 
-
+#This is so we don't need to type out the header over and over again
 header = ",Name,Car Type,Phone Number,Departure Time,Location,Notes\n"
 
 #This is a new set to keep track of riders that have
@@ -99,8 +98,9 @@ north = "North Campus (Pierpont)"
 #This function will actually make the Tuesday spreadsheet
 #It will write tuesday.csv to be ready for uploading to Google Sheets
 def make_tuesday():
-    #The sheet header is always written
+    #The tuesday.csv file will be open for the whole function
     with open("tuesday.csv", "w") as tuesday:
+        #No matter what the sheet header has to be written
         tuesday.write("TUESDAY\n\n\n")
         #If tuesday_drivers is empty then there's no one to drive anyone
         #And nothing is added to the sheet
@@ -122,80 +122,76 @@ def make_tuesday():
         #By the same logic commented above we know that tuedsay_riders and tuesday_drivers
         #are populated if this point is reached
         else:
-            #First want to separate tues_riders list and tues_dues set into separate
-            #Ones based on location
-            north_riders = []
-            central_riders = []
-            north_dues = set()
-            central_dues = set()
-            for rider in tuesday_riders:
-                if rider.loc == central:
-                    central_riders.append(rider)
-                    if rider.uniqname in dues_list:
-                        central_dues.add(rider.uniqname)
+            #Riders can be easily sorted using deques (double-ended queues)
+            #Riders will be randomly pulled from the tuesday_riders list
+            #If they pay dues then they're added to the right of the deque
+            #If they don't pay dues then they're added to the left of it
+            #Then riders are selected going right to left, thus selecting the dues paying members first
+            #Two deques are needed -- one for north campus and one for central campus
+            central_riders = deque()
+            north_riders = deque()
+            while tuesday_riders:
+                #length is minus one because randint is inclusive but lists are zero-indexed
+                index = random.randint(0, len(tuesday_riders) - 1)
+                curr = tuesday_riders[index]
+                #Locations need to be checked to populate the correct deque
+                if curr.loc == central:
+                    #first dues paying is checked
+                    #If they're paying dues they go on the right of the deque, otherwise they go on the left
+                    if curr.uniqname in dues_list:
+                        central_riders.append(curr)
+                    else:
+                        central_riders.appendleft(curr)
+                #Same for north campus
                 else:
-                    north_riders.append(rider)
-                    if rider.uniqname in dues_list:
-                        north_dues.add(rider.uniqname)
-            
-            #Second step is the same as above conditional: Write the header then driver's info
+                    if curr.uniqname in dues_list:
+                        north_riders.append(curr)
+                    else:
+                        north_riders.appendleft(curr)
+                #Last the current rider needs to be removed from tuesday_riders because
+                #They've already been dealt with in terms of organization
+                tuesday_riders.pop(index)
+            #Now we just need to iterate through the drivers and add riders using the 
+            #deques that were just created
             for driver in tuesday_drivers:
+                #This writes the info for the top of each new car in the spreadsheet
                 tuesday.write(header)
                 tuesday.write(str(driver))
-
+                #need to know the location of the driver we're on then we just iterate 
+                #through the capacity of the current driver's car, adding riders as we go
                 location = driver.loc
-                #Adding riders is different because a lot of checks need to be made
                 for _ in range(int(driver.cap)):
-                    #The next steps are basically the same but location dependent
+                    #These next steps are identical but we need to write them twice becase
+                    #The location changes
                     if location == central:
-                        #If central_riders is empty then just write newlines and move on
+                        #If there are no riders left then just print a newline and continue
+                        #So the space is available for randos once the carpools are released
                         if not central_riders:
                             tuesday.write("\n")
                             continue
-
-                        #randint is inclusive but lists are 0-indexed so we
-                        #want to go random to the size of central_riders - 1
-                        index = random.randint(0, len(central_riders) - 1)
-                        curr_rider = central_riders[index]
-
-                        #need to make sure that dues paying members get priority
-                        while not(curr_rider.uniqname in central_dues) and len(central_dues) != 0:
-                            index = random.randint(0, len(central_riders) - 1)
-                            curr_rider = central_riders[index]
-
-                        #Curr_rider can then be added to the spreadsheet and removed from
-                        #central_dues and central_riders
-                        tuesday.write(str(curr_rider))
-                        rode.add(curr_rider.uniqname)
-                        central_riders.pop(index)
-                        if curr_rider.uniqname in central_dues:
-                            central_dues.remove(curr_rider.uniqname)
-                    
-                    #Same steps for north campus
+                        else:
+                            #pop() is nice because it removes the rider and returns it
+                            #so two steps in one
+                            curr = central_riders.pop()
+                            #__str__() makes writing the riders incredibly easy too
+                            tuesday.write(str(curr))
+                            #Also need to keep track of the riders who have been put into a car
+                            #This is what the rode set made above the make functions is for
+                            rode.add(curr.uniqname)
+                    #same process for north campus
                     else:
                         if not north_riders:
                             tuesday.write("\n")
                             continue
-                        #randint is inclusive but lists are 0-indexed so we
-                        #want to go random to the size of central_riders - 1
-                        index = random.randint(0, len(north_riders) - 1)
-                        curr_rider = north_riders[index]
-
-                        #need to make sure that dues paying members get priority
-                        while not(curr_rider.uniqname in north_dues) and len(north_dues) != 0:
-                            index = random.randint(0, len(north_riders) - 1)
-                            curr_rider = north_riders[index]
-
-                        #Curr_rider can then be added to the spreadsheet and removed from
-                        #central_dues and central_riders
-                        tuesday.write(str(curr_rider))
-                        rode.add(curr_rider.uniqname)
-                        north_riders.pop(index)
-                        if curr_rider.uniqname in north_dues:
-                            north_dues.remove(curr_rider.uniqname)
-                #Lastly a newline for spreadsheet formatting
+                        else:
+                            curr = north_riders.pop()
+                            tuesday.write(str(curr))
+                            rode.add(curr.uniqname)
+                #Two newlines are written after the car is made to make things a little easier
+                #When uploading and editing the spreadsheet once it's in Google Sheets
                 tuesday.write("\n\n")
 
+        
 #The make_thursday and make_sunday functions will basically work the same as 
 #make_tuesday. The only difference really is that they also need to 
 #check if people have already been put in a car previously in the week
@@ -218,10 +214,12 @@ def make_thursday():
                     thursday.write("\n")
         #Actually populating the spreadsheet with full cars
         else:
-            #Sort out thursday_riders
-            #The deque only holds dues paying members
-            #Those on the left have already been put in a car previously in the week
-            #Those on the right (appended) have not been put in a car already
+            #These deques work the same way as for tuesday
+            #The only difference (this will be present for Sunday too)
+            #Is that we need to separate dues paying members and non-dues paying members into two different deques
+            #This is because dues paying members still get priority over non-dues paying members even if
+            #they've already been in a car previously
+            #So the left side of the deques is now for people who have been in cars before in the weel
             central_dues = deque()
             central_non_dues = deque()
             north_dues = deque()
@@ -256,45 +254,48 @@ def make_thursday():
                             north_non_dues.appendleft(curr)
                         else:
                             north_non_dues.append(curr)
-                #need to remove index from thursday_riders so loop isn't infinite
+                    #need to remove index from thursday_riders so loop isn't infinite
                 thursday_riders.pop(index)
 
-                #now just need to go iterate through thursday drivers
-                #and add riders using the deques and lists made above
-                for driver in thursday_drivers:
-                    thursday.write(header)
-                    thursday.write(str(driver))
+            #now just need to go iterate through thursday drivers
+            #and add riders using the deques made above
+            for driver in thursday_drivers:
+                thursday.write(header)
+                thursday.write(str(driver))
 
-                    location = driver.loc
-                    for _ in range(int(driver.cap)):
-                        #identical but location-dependent steps once again
-                        if location == central:
-                            if not central_dues and not central_non_dues:
-                                thursday.write("\n")
-                                continue
-                            if central_dues:
-                                curr = central_dues.pop()
-                                thursday.write(str(curr))
-                                rode.add(curr.uniqname)
-                            else:
-                                curr = central_non_dues.pop()
-                                thursday.write(str(curr))
-                                rode.add(curr.uniqname)
-                        #same process for north campus
+                location = driver.loc
+                for _ in range(int(driver.cap)):
+                    #identical but location-dependent steps once again
+                    if location == central:
+                        if not central_dues and not central_non_dues:
+                            thursday.write("\n")
+                            continue
+                        if central_dues:
+                            curr = central_dues.pop()
+                            thursday.write(str(curr))
+                            rode.add(curr.uniqname)
                         else:
-                            if not north_dues and not north_non_dues:
-                                thursday.writable("\n")
-                                continue
-                            if north_dues:
-                                curr = north_dues.pop()
-                                thursday.write(str(curr))
-                                rode.add(curr.uniqname)
-                            else:
-                                curr = north_non_dues.pop()
-                                thursday.write(str(curr))
-                                rode.add(curr.uniqname)
+                            curr = central_non_dues.pop()
+                            thursday.write(str(curr))
+                            rode.add(curr.uniqname)
+                    #same process for north campus
+                    else:
+                        if not north_dues and not north_non_dues:
+                            thursday.write("\n")
+                            continue
+                        if north_dues:
+                            curr = north_dues.pop()
+                            thursday.write(str(curr))
+                            rode.add(curr.uniqname)
+                        else:
+                            curr = north_non_dues.pop()
+                            thursday.write(str(curr))
+                            rode.add(curr.uniqname)
+                thursday.write("\n\n")
 
-
+#make_sunday only has one difference from make_thursday
+#and that's that the sunday attribute of each driver needs to 
+#be changed to true so the correct time is written on the spreadsheet
 
             
                 

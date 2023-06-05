@@ -33,7 +33,7 @@ class Rider:
         self.name = name
         self.num = number
         self.loc = location
-        self.uniqname = uniq
+        self.uniqname = uniq.lower()
     
     #Just like Driver this will hopefully be changed to print out everything 
     #in pretty csv format to make this program nice and modular
