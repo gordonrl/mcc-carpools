@@ -96,7 +96,7 @@ central = "Central Campus (The Cube)"
 north = "North Campus (Pierpont)"
 
 #This function will actually make the Tuesday spreadsheet
-#It will write tuesday.csv to be ready for uploading to Google Sheets
+#It will create and write tuesday.csv to be ready for uploading to Google Sheets
 def make_tuesday():
     #The tuesday.csv file will be open for the whole function
     with open("tuesday.csv", "w") as tuesday:
@@ -118,7 +118,7 @@ def make_tuesday():
                 tuesday.write(str(driver))
                 #want to make new lines in the csv for each spot that a rider could sign up for
                 for _ in range(int(driver.cap)):
-                    tuesday.write("\n")
+                    tuesday.write("Rider,\n")
         #By the same logic commented above we know that tuedsay_riders and tuesday_drivers
         #are populated if this point is reached
         else:
@@ -160,14 +160,14 @@ def make_tuesday():
                 #need to know the location of the driver we're on then we just iterate 
                 #through the capacity of the current driver's car, adding riders as we go
                 location = driver.loc
-                for _ in range(int(driver.cap)):
-                    #These next steps are identical but we need to write them twice becase
-                    #The location changes
-                    if location == central:
+                #These next steps are identical but we need to write them twice because
+                #The location changes
+                if location == central:
+                    for _ in range(int(driver.cap)):
                         #If there are no riders left then just print a newline and continue
                         #So the space is available for randos once the carpools are released
                         if not central_riders:
-                            tuesday.write("\n")
+                            tuesday.write("Rider,\n")
                             continue
                         else:
                             #pop() is nice because it removes the rider and returns it
@@ -178,10 +178,11 @@ def make_tuesday():
                             #Also need to keep track of the riders who have been put into a car
                             #This is what the rode set made above the make functions is for
                             rode.add(curr.uniqname)
-                    #same process for north campus
-                    else:
+                #same process for north campus
+                else:
+                    for _ in range(int(driver.cap)):
                         if not north_riders:
-                            tuesday.write("\n")
+                            tuesday.write("Rider,\n")
                             continue
                         else:
                             curr = north_riders.pop()
@@ -211,7 +212,7 @@ def make_thursday():
                 thursday.write(str(driver))
                 #Add lines so riders can still sign up if needed
                 for _ in range(int(driver.cap)):
-                    thursday.write("\n")
+                    thursday.write("Rider,\n")
         #Actually populating the spreadsheet with full cars
         else:
             #These deques work the same way as for tuesday
@@ -264,11 +265,11 @@ def make_thursday():
                 thursday.write(str(driver))
 
                 location = driver.loc
-                for _ in range(int(driver.cap)):
-                    #identical but location-dependent steps once again
-                    if location == central:
+                #identical but location-dependent steps once again
+                if location == central:
+                    for _ in range(int(driver.cap)):
                         if not central_dues and not central_non_dues:
-                            thursday.write("\n")
+                            thursday.write("Rider,\n")
                             continue
                         if central_dues:
                             curr = central_dues.pop()
@@ -278,10 +279,11 @@ def make_thursday():
                             curr = central_non_dues.pop()
                             thursday.write(str(curr))
                             rode.add(curr.uniqname)
-                    #same process for north campus
-                    else:
+                #same process for north campus
+                else:
+                    for _ in range(int(driver.cap)):
                         if not north_dues and not north_non_dues:
-                            thursday.write("\n")
+                            thursday.write("Rider,\n")
                             continue
                         if north_dues:
                             curr = north_dues.pop()
@@ -296,7 +298,88 @@ def make_thursday():
 #make_sunday only has one difference from make_thursday
 #and that's that the sunday attribute of each driver needs to 
 #be changed to true so the correct time is written on the spreadsheet
+def make_sunday():
+    with open("sunday.csv", "w") as sunday:
+        sunday.write("SUNDAY\n\n\n")
+        #check for drivers
+        if not sunday_drivers:
+            return
+        #check for riders
+        if not sunday_riders:
+            for driver in sunday_drivers:
+                sunday.write(header)
+                #Need to make the driver's sunday attribute True so the correct time is printed
+                #See classes.py for more info
+                driver.sunday = True
+                sunday.write(str(driver))
+                #Lines for capacity
+                for _ in range(int(driver.cap)):
+                    sunday.write("Rider,\n")
+        #Actually crete cars otherwise
+        else:
+            central_dues = deque()
+            central_non_dues = deque()
+            north_dues = deque()
+            north_non_dues = deque()
+            #randomization
+            while sunday_riders:
+                index = random.randint(0, len(sunday_riders) - 1)
+                curr = sunday_riders[index]
+                #check locations and dues paying
+                if curr.loc == central:
+                    if curr.uniqname in dues_list:
+                        if curr.uniqname in rode:
+                            central_dues.appendleft(curr)
+                        else:
+                            central_dues.append(curr)
+                    else:
+                        if curr.uniqname in rode:
+                            central_non_dues.appendleft(curr)
+                        else:
+                            central_non_dues.append(curr)
+                else:
+                    if curr.uniqname in dues_list:
+                        if curr.uniqname in rode:
+                            north_dues.appendleft(curr)
+                        else:
+                            north_dues.append(curr)
+                    else:
+                        if curr.uniqname in rode:
+                            north_non_dues.appendleft(curr)
+                        else:
+                            north_non_dues.append(curr)
+                sunday_riders.pop(index)
 
-            
+            #iterate through drivers and populate cars
+            for driver in sunday_drivers:
+                sunday.write(header)
+                driver.sunday = True
+                sunday.write(str(driver))
+                location = driver.loc
                 
+                if location == central:
+                    #Don't need to add riders to rode because sunday is the last day
+                    for _ in range(int(driver.cap)):
+                        if not central_dues and not central_non_dues:
+                            sunday.write("Rider,\n")
+                            continue
+                        if central_dues:
+                            curr = central_dues.pop()
+                            sunday.write(str(curr))
+                        else:
+                            curr = central_non_dues.pop()
+                            sunday.write(str(curr))
+                #Same for north campus
+                else:
+                    for _ in range(int(driver.cap)):
+                        if not north_dues and not north_non_dues:
+                            sunday.write("Rider,\n")
+                            continue
+                        if north_dues:
+                            curr = north_dues.pop()
+                            sunday.write(str(curr))
+                        else:
+                            curr = north_non_dues.pop()
+                            sunday.write(str(curr))
+                sunday.write("\n\n")
 

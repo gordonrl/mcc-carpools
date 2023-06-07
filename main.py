@@ -24,3 +24,4 @@ with open("responses.csv") as response_file:
 #been assigned to a car in a previous day
 make_tuesday()
 make_thursday()
+make_sunday()

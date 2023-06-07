@@ -6,7 +6,11 @@ class Driver:
     def __init__(self, name, number, capacity, location, car_info, uniq):
         self.name = name
         self.num = number
-        self.cap = capacity
+
+        if capacity == '':
+            self.cap = 0
+        else:
+            self.cap = capacity
         self.loc = location
         #car_info = color and model
         self.info = car_info
@@ -21,7 +25,7 @@ class Driver:
         if not self.sunday:
             return f"Driver,{self.name},{self.info},{self.num},6:45,{self.loc},"
         else:
-            return f"Driver{self.name},{self.info},{self.num},9:45,{self.loc},"
+            return f"Driver,{self.name},{self.info},{self.num},9:45,{self.loc},"
     
 
 #The rider class is very similar to the driver class in that it's just storing useful information
