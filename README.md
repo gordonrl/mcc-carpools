@@ -17,6 +17,7 @@ Once again congratulations, and if you have any questions feel free to email me 
 
 ## Standard Usage
 **Unless you're intentionally modifying the program you should not have to write any code or modify any preexisting files!**
+
 ***If you'd prefer to watch a video for all of this I've made and included a walkthrough of these steps in the "Carpools" folder of the Google Drive***
 
 1. **You can skip this step if you already have mcc-carpools-main open in VSCode. If not:** Open VSCode, select "Open" on the welcome screen and navigate to the download from the previous step. If you already have a project open on VSCode either do "file"->"new window" to open the program but keep your previous project open or "file"->"open folder" to just open this program (This is on mac, I'm not familiar with VSCode file navigation on windows).
