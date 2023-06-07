@@ -118,7 +118,7 @@ def make_tuesday():
                 tuesday.write(str(driver))
                 #want to make new lines in the csv for each spot that a rider could sign up for
                 for _ in range(int(driver.cap)):
-                    tuesday.write("Rider,\n")
+                    tuesday.write("\nRider,")
         #By the same logic commented above we know that tuedsay_riders and tuesday_drivers
         #are populated if this point is reached
         else:
@@ -167,7 +167,7 @@ def make_tuesday():
                         #If there are no riders left then just print a newline and continue
                         #So the space is available for randos once the carpools are released
                         if not central_riders:
-                            tuesday.write("Rider,\n")
+                            tuesday.write("\nRider,")
                             continue
                         else:
                             #pop() is nice because it removes the rider and returns it
@@ -182,7 +182,7 @@ def make_tuesday():
                 else:
                     for _ in range(int(driver.cap)):
                         if not north_riders:
-                            tuesday.write("Rider,\n")
+                            tuesday.write("\nRider,")
                             continue
                         else:
                             curr = north_riders.pop()
@@ -212,7 +212,7 @@ def make_thursday():
                 thursday.write(str(driver))
                 #Add lines so riders can still sign up if needed
                 for _ in range(int(driver.cap)):
-                    thursday.write("Rider,\n")
+                    thursday.write("\nRider,")
         #Actually populating the spreadsheet with full cars
         else:
             #These deques work the same way as for tuesday
@@ -269,7 +269,7 @@ def make_thursday():
                 if location == central:
                     for _ in range(int(driver.cap)):
                         if not central_dues and not central_non_dues:
-                            thursday.write("Rider,\n")
+                            thursday.write("\nRider,")
                             continue
                         if central_dues:
                             curr = central_dues.pop()
@@ -283,7 +283,7 @@ def make_thursday():
                 else:
                     for _ in range(int(driver.cap)):
                         if not north_dues and not north_non_dues:
-                            thursday.write("Rider,\n")
+                            thursday.write("\nRider,")
                             continue
                         if north_dues:
                             curr = north_dues.pop()
@@ -314,7 +314,7 @@ def make_sunday():
                 sunday.write(str(driver))
                 #Lines for capacity
                 for _ in range(int(driver.cap)):
-                    sunday.write("Rider,\n")
+                    sunday.write("\nRider,")
         #Actually crete cars otherwise
         else:
             central_dues = deque()
@@ -361,7 +361,7 @@ def make_sunday():
                     #Don't need to add riders to rode because sunday is the last day
                     for _ in range(int(driver.cap)):
                         if not central_dues and not central_non_dues:
-                            sunday.write("Rider,\n")
+                            sunday.write("\nRider,")
                             continue
                         if central_dues:
                             curr = central_dues.pop()
@@ -373,7 +373,7 @@ def make_sunday():
                 else:
                     for _ in range(int(driver.cap)):
                         if not north_dues and not north_non_dues:
-                            sunday.write("Rider,\n")
+                            sunday.write("\nRider,")
                             continue
                         if north_dues:
                             curr = north_dues.pop()
