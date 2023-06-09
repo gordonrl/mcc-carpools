@@ -16,7 +16,22 @@ sunday_drivers = []
 sunday_riders = []
 
 #Allows easy lookup of dues paying members
-dues_list = set(line.lower() and line.strip("\n") for line in open("dues.csv"))
+dues_list = set()
+#This goes through the list of dues paying members and adds them to the dues_list set
+#The format of the file has newlines at the end of every uniqname and some are entered
+#with capitalization so this also makes everything lowercase and removes the newline character
+with open("dues.csv") as dues:
+    while True:
+        line = dues.readline()
+        if not line:
+            break
+        
+        line = line.strip("\n")
+        line = line.lower()
+        if line == "jeshah":
+            line = "jesha"
+        dues_list.add(line)
+        
 
 #This is the function that will populate the lists
 #It iterates through the responses and populates each list
@@ -99,7 +114,7 @@ north = "North Campus (Pierpont)"
 #It will create and write tuesday.csv to be ready for uploading to Google Sheets
 def make_tuesday():
     #The tuesday.csv file will be open for the whole function
-    with open("tuesday.csv", "w") as tuesday:
+    with open("tuesday.csv", "x") as tuesday:
         #No matter what the sheet header has to be written
         tuesday.write("TUESDAY\n\n\n")
         #If tuesday_drivers is empty then there's no one to drive anyone
@@ -112,6 +127,9 @@ def make_tuesday():
         #isn't empty if we get to this point
         if not tuesday_riders:
             for driver in tuesday_drivers:
+                #If driver was made by mistake
+                if driver.cap == 0 or driver.loc == "Not Going":
+                    continue
                 #start by writing the header
                 tuesday.write(header)
                 #write the info of the driver (the __str__ class method makes this easy!!!!)
@@ -119,6 +137,7 @@ def make_tuesday():
                 #want to make new lines in the csv for each spot that a rider could sign up for
                 for _ in range(int(driver.cap)):
                     tuesday.write("\nRider,")
+                tuesday.write("\n\n")
         #By the same logic commented above we know that tuedsay_riders and tuesday_drivers
         #are populated if this point is reached
         else:
@@ -143,7 +162,7 @@ def make_tuesday():
                     else:
                         central_riders.appendleft(curr)
                 #Same for north campus
-                else:
+                elif curr.loc == north:
                     if curr.uniqname in dues_list:
                         north_riders.append(curr)
                     else:
@@ -154,6 +173,9 @@ def make_tuesday():
             #Now we just need to iterate through the drivers and add riders using the 
             #deques that were just created
             for driver in tuesday_drivers:
+                #If driver was made by mistake
+                if driver.cap == 0 or driver.loc == "Not Going":
+                    continue
                 #This writes the info for the top of each new car in the spreadsheet
                 tuesday.write(header)
                 tuesday.write(str(driver))
@@ -179,7 +201,7 @@ def make_tuesday():
                             #This is what the rode set made above the make functions is for
                             rode.add(curr.uniqname)
                 #same process for north campus
-                else:
+                elif location == north:
                     for _ in range(int(driver.cap)):
                         if not north_riders:
                             tuesday.write("\nRider,")
@@ -200,7 +222,7 @@ def make_tuesday():
 
 def make_thursday():
     #header
-    with open("thursday.csv", "w") as thursday:
+    with open("thursday.csv", "x") as thursday:
         thursday.write("THURSDAY\n\n\n")
         #check for drivers
         if not thursday_drivers:
@@ -208,11 +230,15 @@ def make_thursday():
         #check for riders
         if not thursday_riders:
             for driver in thursday_drivers:
+                #If driver was made by mistake
+                if driver.cap == 0 or driver.loc == "Not Going":
+                    continue
                 thursday.write(header)
                 thursday.write(str(driver))
                 #Add lines so riders can still sign up if needed
                 for _ in range(int(driver.cap)):
                     thursday.write("\nRider,")
+                thursday.write("\n\n")
         #Actually populating the spreadsheet with full cars
         else:
             #These deques work the same way as for tuesday
@@ -244,7 +270,7 @@ def make_thursday():
                         else:
                             central_non_dues.append(curr)
                 #same process for north campus
-                else:
+                elif curr.loc == north:
                     if curr.uniqname in dues_list:
                         if curr.uniqname in rode:
                             north_dues.appendleft(curr)
@@ -261,6 +287,9 @@ def make_thursday():
             #now just need to go iterate through thursday drivers
             #and add riders using the deques made above
             for driver in thursday_drivers:
+                #If driver was made by mistake
+                if driver.cap == 0 or driver.loc == "Not Going":
+                    continue
                 thursday.write(header)
                 thursday.write(str(driver))
 
@@ -280,7 +309,7 @@ def make_thursday():
                             thursday.write(str(curr))
                             rode.add(curr.uniqname)
                 #same process for north campus
-                else:
+                elif location == north:
                     for _ in range(int(driver.cap)):
                         if not north_dues and not north_non_dues:
                             thursday.write("\nRider,")
@@ -299,7 +328,7 @@ def make_thursday():
 #and that's that the sunday attribute of each driver needs to 
 #be changed to true so the correct time is written on the spreadsheet
 def make_sunday():
-    with open("sunday.csv", "w") as sunday:
+    with open("sunday.csv", "x") as sunday:
         sunday.write("SUNDAY\n\n\n")
         #check for drivers
         if not sunday_drivers:
@@ -307,6 +336,9 @@ def make_sunday():
         #check for riders
         if not sunday_riders:
             for driver in sunday_drivers:
+                #If driver was made by mistake
+                if driver.cap == 0 or driver.loc == "Not Going":
+                    continue
                 sunday.write(header)
                 #Need to make the driver's sunday attribute True so the correct time is printed
                 #See classes.py for more info
@@ -315,6 +347,7 @@ def make_sunday():
                 #Lines for capacity
                 for _ in range(int(driver.cap)):
                     sunday.write("\nRider,")
+                sunday.write('\n\n')
         #Actually crete cars otherwise
         else:
             central_dues = deque()
@@ -337,7 +370,7 @@ def make_sunday():
                             central_non_dues.appendleft(curr)
                         else:
                             central_non_dues.append(curr)
-                else:
+                elif curr.loc == north:
                     if curr.uniqname in dues_list:
                         if curr.uniqname in rode:
                             north_dues.appendleft(curr)
@@ -352,6 +385,9 @@ def make_sunday():
 
             #iterate through drivers and populate cars
             for driver in sunday_drivers:
+                #If driver was made by mistake
+                if driver.cap == 0 or driver.loc == "Not Going":
+                    continue
                 sunday.write(header)
                 driver.sunday = True
                 sunday.write(str(driver))
@@ -370,7 +406,7 @@ def make_sunday():
                             curr = central_non_dues.pop()
                             sunday.write(str(curr))
                 #Same for north campus
-                else:
+                elif location == north:
                     for _ in range(int(driver.cap)):
                         if not north_dues and not north_non_dues:
                             sunday.write("\nRider,")
