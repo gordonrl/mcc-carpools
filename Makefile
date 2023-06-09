@@ -1,4 +1,4 @@
-carpools:
+basic:
 	python3 main.py
 
 clean:
