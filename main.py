@@ -15,8 +15,6 @@ with open("responses.csv") as response_file:
     make_lists(responses)
 
 
-
-
 #The next step is parsing through lists to actually create carpools
 #This is done through calling functions so if there's no one to 
 #drive for a given day it's easily dealt with
