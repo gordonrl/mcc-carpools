@@ -9,11 +9,12 @@ Once again congratulations, and if you have any questions feel free to email me 
 
 # How to use
 ## Setup
+Video Tutorial: https://drive.google.com/file/d/1aN8o8KMpZJie4FCfX_ELGwUPImxirgrL/view?usp=sharing
 ***These only have to be done once -- your first time setting up the program***
 
 ***Note: I'm writing these steps for someone to do purely on the command line, you could also do them in the VSCode command line (you'll have to download the Python extension) but if you're not doing any other coding I don't want you to have to download more than what's necessary. If this doesn't make sense to you that's okay, just keep following the instructions***
 
-1. Download Miniconda from https://docs.conda.io/en/main/miniconda.html (This is a lot of steps and it seems a little bit scary but you only need to do this once). If you're struggling with this process I go into it with more detail in the video tutorial (*LINK VIDEO HERE*). This is by far the most complicated step and I sincerely apologize but you only need to do it once. Here are some clarifying things as well:
+1. Download Miniconda from https://docs.conda.io/en/main/miniconda.html (This is a lot of steps and it seems a little bit scary but you only need to do this once). If you're struggling with this process I go into it with more detail in the video tutorial (https://drive.google.com/file/d/1aN8o8KMpZJie4FCfX_ELGwUPImxirgrL/view?usp=sharing). This is by far the most complicated step and I sincerely apologize but you only need to do it once. Here are some clarifying things as well:
     1. You'll need your terminal to be open for this and for the rest of the carpool making. Just Google how to open the terminal for your type of device.
     2. You need to select the correct installer link for your device, a quick Google search should make this easy. Ex: "How to check if my Windows machine is 32 or 64 bit"
     3. If your Mac is running zhs (it will say on the top of your terminal) the bash installation will work just fine
@@ -30,11 +31,10 @@ The hard step is over! Yay! And you never have to do it again!!! There's just a 
 
 3. In your terminal, navigate to the carpools folder you downloaded in the previous step. I currently have the carpools folder on my desktop so this step looks like "cd /Users/Gordon/Desktop/mcc_carpools". To make sure you're in the right place, type "pwd" and that same set of slashes should pop up.
 
-4. Tyoe "conda env create -f environment.yml" into the terminal. Once this is done loading then you're good to go!!! 
-
-
+4. Type "conda env create -f environment.yml" into the terminal. Once this is done loading then you're good to go!!! 
 
 ## Standard Usage
+Video Tutorial: https://drive.google.com/file/d/14phRwsCR7qZR-0VtjIJBAqW3gcAkfmDw/view?usp=sharing
 **Unless you're intentionally modifying the program you should not have to write any code or modify any preexisting files!**
 
 ***If you'd prefer to watch a video for all of this I've made and included a walkthrough of these steps in the "Carpools" folder of the Google Drive***
