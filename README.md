@@ -62,6 +62,8 @@ This would happen if you make a mistake when filling out the Google Form such as
 # How it works (Optional)
 ***This section is just explaining all the nerdy CS stuff going on under the hood, feel free to skip over it if you're not interested, but it could be useful if you want to make any tweaks in the future!***
 
+## How the code works
+
 Google forms allows you to download responses in the form of a csv (comma separated values) file, which allows two conveniences:
 
 1. Python has a module (csv) that reads in csv files and stores them as dictionaries (aka unoreded_map if you're used to c++). This makes it easy to find things like whether or not someone is a rider or driver or whether or not someone is a dues paying member.
@@ -76,9 +78,13 @@ The next step is to actually create the spreasheets for each day. This process i
 
 The process for creating cars is actually pretty simple (this whole program is actually pretty simple haha). For each day I go through the list of riders and check whether or not they've paid dues (and whether or not they've already been put in a car earlier in the week if it's Thursday or Sunday). Based on this information I put them on either the left or the right of a deque. Originally I was using different lists but I didn't like having so many variables so switching to a deque was nice. It makes things easy because I can put people in on different sides but only read from one. For example, for Tuesday, if a randomly selected rider paid dues then I'd append them to the right side of the deque, if they didn't pay dues then I'd append them to the left side. When actually putting them in cars I would then only take people off from the right side of the deque, thus selecting the dues paying members first! Super cool, super easy.
 
+## How other people can easily use the code
+
+To be honest my original hope was people could just download this code, press a few buttons and be good to go but of course it didn't turn out that way and that's okay. It's possible that this could've worked for people who don't code but it would definitely have caused issues if the next person making carpools was already coding other projects in Python. That's because of different versions of packages and Python itself. So, for this reason and from the advice of someone with infinitely more experience then me, I setup a Conda environment for this program (that's what the "environment.yml" file is for). I was a little unhappy about this because it meant that whoever does carpools next will have to download Conda and everything, but even if I didn't do this they'd end up having to download at least Python and VSCode so I'm not sure it really would've been much better. The process for downloading Conda does look a little scary but the instructions they provide are extremely well done and thorough and hopefully the instructions I write are good as well.
+
+If you haven't used Conda before it is super cool and I'm definitely going to be using it a lot in the future so I'd recommend it. I really really hope we don't run into any Conda-related issues with sharing this software in the future!
+
 This is a pretty broad description but hopefully it gives a general idea of what's going on. I tried ot comment my code well so I'd recommend actually taking a look at functions.py and classes.py if you aren't bored yet and really want to see what's going on.
 
 *P.S. This is my first Python project so if there are some poor practices I apologize! I heavily commented my code so I hope it is still readable and understandable for future carpool-makers who care to inspect it!!!*
-
-*P.P.S. I'm sure there are faster, more streamlined ways to do this (ex: Makefile, command line funny business, Pipenv) but one of the problems with the previous carpool system was that it was very confusing and difficult to set up, even for people who kind of knew what they were doing (me!). So for this reason I decided to make some sacrifices in gracefulness and beauty in order to hopefully have it be more accessible and easier to use for future carpool-makers even if they don't know anything about coding.*
 

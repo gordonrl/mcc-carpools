@@ -1,5 +1,3 @@
-.ONESHELL:
-
 .DEFAULT_GOAL := carpools
 
 carpools:
