@@ -1,4 +1,7 @@
-.DEFAULT_GOAL := carpools
+.ONESHELL:
+
+setup: environment.yml
+	conda env create -f environment.yml
 
 carpools:
 	python3 main.py
@@ -6,4 +9,4 @@ carpools:
 clean:
 	rm -rf __pycache__ tuesday.csv thursday.csv sunday.csv
 
-.PHONY: carpools clean
+.PHONY: basic clean carpools
