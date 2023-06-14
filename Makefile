@@ -7,6 +7,6 @@ carpools:
 	python3 main.py
 
 clean:
-	rm -rf __pycache__ tuesday.csv thursday.csv sunday.csv
+	rm -rf __pycache__ tuesday.csv thursday.csv sunday.csv responses.csv dues.csv
 
 .PHONY: basic clean carpools

@@ -10,34 +10,60 @@ Once again congratulations, and if you have any questions feel free to email me 
 # How to use
 ## Setup
 ***These only have to be done once -- your first time setting up the program***
-1. Download this program from GitHub (Here's the link if you're reading this on Google Docs: https://github.com/gordonrl/mcc-carpools) and store it wherever you want on your computer as long as you can access it. To do this press "<> Code" then "Download ZIP" This will be called "mcc-carpools-main" when you download it. Feel free to rename it to whatever you want or leave it be.
 
-2. Follow the steps up to and including "Select a Python interpreter" here: https://code.visualstudio.com/docs/python/python-tutorial. This is pretty short but it will be longer and a little more confusing if you don't have coding experience. Just type what it tells you to type where it tells you to type it and you should be fine. **For the section titled "Start VS Code in a workspace folder" open "mcc-carpools-main", or whatever you renamed it to, (i.e. the file you downloaded in step one) rather than creating a new one like they say to.**
+***Note: I'm writing these steps for someone to do purely on the command line, you could also do them in the VSCode command line (you'll have to download the Python extension) but if you're not doing any other coding I don't want you to have to download more than what's necessary. If this doesn't make sense to you that's okay, just keep following the instructions***
+
+1. Download Miniconda from https://docs.conda.io/en/main/miniconda.html (This is a lot of steps and it seems a little bit scary but you only need to do this once). If you're struggling with this process I go into it with more detail in the video tutorial (*LINK VIDEO HERE*). This is by far the most complicated step and I sincerely apologize but you only need to do it once. Here are some clarifying things as well:
+    1. You'll need your terminal to be open for this and for the rest of the carpool making. Just Google how to open the terminal for your type of device.
+    2. You need to select the correct installer link for your device, a quick Google search should make this easy. Ex: "How to check if my Windows machine is 32 or 64 bit"
+    3. If your Mac is running zhs (it will say on the top of your terminal) the bash installation will work just fine
+    4. After downloading the installer, scroll to "Installation instructions" then scroll to "Regular Installation" and click the link for your machine's type (MacOS, Windows, Linux).
+    5. For "Verify your installation" the part they tell you to type that says "filename" is the entire name of the installer you downloaded earlier. You'll also need to be in the same directory as the file in your terminal for this to work. I would recommend putting the installer on your desktop and doing everything from there, on my mac terminal I navigate to my desktop by typing "cd /Users/Gordon/Desktop" ("cd" means "change directory" which basically means move to a different folder on my computer).
+    6. When verifying the installer, the number generated should match up with the "SHA256 hash" number to the right of where you clicked to download the installer.
+    7. When installing on MacOS or Linux, when it tells you what to run in the terminal window, replace "Miniconda3-latest-MacOSX-x86_64.sh" with the full name of the installer you downloaded.
+    8. Once you're done downloading Conda, close your terminal and reopen it, type "conda deactivate", then "conda update conda" in the terminal to make sure everything is up to date.
+    9. Once Conda is updated, type "conda config --set auto_activate_base false"
+
+The hard step is over! Yay! And you never have to do it again!!! There's just a tiny bit more to do before you'll be making carpools like it's nothing.
+
+2. Download this program from GitHub (Here's the link if you're reading this on Google Docs: https://github.com/gordonrl/mcc-carpools) and store it wherever you want on your computer as long as you can access it. To do this press "<> Code" then "Download ZIP" This will be called "mcc-carpools-main" when you download it. Feel free to rename it to whatever you want or leave it be. *If you choose to rename it, don't use spaces! use hyphens or underscores instead -- This will make navigating to the folder much easier*
+
+3. In your terminal, navigate to the carpools folder you downloaded in the previous step. I currently have the carpools folder on my desktop so this step looks like "cd /Users/Gordon/Desktop/mcc_carpools". To make sure you're in the right place, type "pwd" and that same set of slashes should pop up.
+
+4. Tyoe "conda env create -f environment.yml" into the terminal. Once this is done loading then you're good to go!!! 
+
+
 
 ## Standard Usage
 **Unless you're intentionally modifying the program you should not have to write any code or modify any preexisting files!**
 
 ***If you'd prefer to watch a video for all of this I've made and included a walkthrough of these steps in the "Carpools" folder of the Google Drive***
 
-1. **You can skip this step if you already have mcc-carpools-main open in VSCode. If not:** Open VSCode, select "Open" on the welcome screen and navigate to the download from the previous step. If you already have a project open on VSCode either do "file"->"new window" to open the program but keep your previous project open or "file"->"open folder" to just open this program (This is on mac, I'm not familiar with VSCode file navigation on windows).
+1. Download the carpool form responses for this week and rename the file to to "responses.csv". To do this open the Google Form, go to "responses", select the three vertical dots next to "View in Sheets", and select "Download responses (.csv)." Once you add the download to your computer (I just put in on my desktop on Mac) you can rename it to "responses.csv"
 
-2. Download the carpool form responses for this week and rename the file to to "responses.csv". To do this open the Google Form, go to "responses", select the three vertical dots next to "View in Sheets", and select "Download responses (.csv)." Once you add the download to your computer (I just put in on my desktop on Mac) you can rename it to "responses.csv"
+2. Download list of dues paying members as a csv and rename to "dues.csv". To do this open the dues paying members Google Sheet, select "file" under the name of the sheet, select "download", and finally "Comma Separated Values (.csv)". You can rename this the same way you renamed the responses.
 
-3. Download list of dues paying members as a csv and rename to "dues.csv". To do this open the dues paying members Google Sheet, select "file" under the name of the sheet, select "download", and finally "Comma Separated Values (.csv)". You can rename this the same way you renamed the responses.
+***The responses NEED to be called "responses.csv" and the list of dues paying members NEEDS to be called "dues.csv" otherwise the program will not work***
 
-4. Add "responses.csv" and "dues.csv" to VSCode, deleting last week's versions if needed. To do this select the icon in the top left of VSCode that looks like two pieces of paper (they call it "Explorer" -- If it's open you should see a list of all of the files just to the right of the icon) and drag and drop the files from wherever they are on your computer. Alternatively, you can find the folder for the entire program on your laptop (it will be called whatever you named it in step 1 of "Setup") and drag and drop the two files into it, they should show up in "Explorer" once you open VSCode.
+3. Add "dues.csv" and "responses.csv" to the carpools folder you downloaded from github. 
 
-5. In "Explorer", select "main.py" so its open in the main screen of VSCode. You'll know it's open because its tab on the top of VSCode will be highlighted, just like a web browser. ***DO NOT EDIT THIS FILE AT ALL, IT JUST NEEDS TO BE OPEN IN THE MAIN SCREEN!***
+4. Open Terminal and navigate to the carpools folder, this is done in the same was as step 3 of setup.
 
-6. Press the control and f5 keys simultaneously. This will create three files, "tuesday.csv", "thursday.csv", and "sunday.csv" that contain the carpools in a nice, easy-to-upload format. If you're using a Mac with a touchbar (like me when I made this) you will also need to hold the "fn" key so the function keys show up in the touchbar. *If you get an error saying "File exits: [file name], make sure to delete the "tuesday.csv", "thursday.csv", and "sunday.csv" files that the program created last week*
+5. Type "conda activate carpools", "(carpools)" should now show up on the leftmost side of the line you're typing on
+
+6. Type "make carpools", if all goes well "Carpools made!" should show up in your terminal and there should be three new files, "tuesday.csv", "thursday.csv", and "sunday.csv" in your carpools folder.
 
 7. Create a new Google Sheet, upload the csv files made in the previous step. To do this in the sheet go "File"->"Import"->"Upload" then select one of "tuesday.csv", "thursday.csv", or "sunday.csv" (Unfortunately Google Sheets doesn't let you select multiple files at once for uploading so you'll have to do this step three times, once for each file). *For the first file you upload (probably "tuesday.csv")*, once the file is uploaded, select the dropdown undernearth "Import location" and select "Replace spreadsheet", you can leave everything else as it is (ignore the warning), then select "Import data". The process is the same for the next two files except this time *select "Insert new sheet(s) under "Import location"*. If you did this correctly then all three files should be in the same Google Sheet. There should be three tabs at the bottom, called "tuesday", "thursday", and "sunday".
 
-8. Make the sheets look pretty. There are pictures (Carpool Upload BEFORE and Carpool Upload AFTER) in the Google Drive in the "Carpools" folder. Some of the beautification is probably unecessary but it took me like 30 seconds per sheet so it's not that bad. What really matters is that people can differentiate between cars and people adding their cars later on know how to make them look.
+8. Make the sheets look pretty. There are pictures (Carpool Upload BEFORE (https://drive.google.com/file/d/1zDHUIiNawpzN699VwboCTiPHn6ltkD64/view?usp=sharing) and Carpool Upload AFTER (https://drive.google.com/file/d/1fXrUFMP1J79LAhIcU-JDvDvF3CvVcOOa/view?usp=sharing)) in the Google Drive in the "Carpools" folder. Some of the beautification is probably unecessary but it took me like 30 seconds per sheet so it's not that bad. What really matters is that people can differentiate between cars and people adding their cars later on know how to make them look.
 
 9. Share the Google Sheet. Change "General access" to "University of Michigan" then change the role (on the right) to "Editor", then copy the link to be put into the email/GroupMe.
 
-10. ***CLEAR CARPOOL FORM RESPONSES AND DELETE CREATED FILES IN VSCODE IN PREPARATION FOR NEXT WEEK*** To do this go to the "Responses" section of the Google Form, click the three vertical dots next to "Link to Sheets", and select "Delete all responses". To delete the files in VSCode, open "Explorer", select "tuesday.csv", "thursday.csv", and "sunday.csv", right click, and select "delete". ***Don't delete any other files in VSCode!!!***
+***Do not proceed until you are certain that the carpools are made and shared, the next steps will permanently the files you used to create the carpools***
+
+10. In Terminal, type "make clean" then "conda deactivate". This will delete "responses.csv", "dues.csv", "tuesday.csv", "thursday.csv", and "sunday.csv" in preparation for creating carpools next week.
+
+10. ***CLEAR CARPOOL FORM RESPONSES AND DELETE CREATED FILES IN VSCODE IN PREPARATION FOR NEXT WEEK*** To do this go to the "Responses" section of the Google Form, click the three vertical dots next to "Link to Sheets", and select "Delete all responses".
 
 11. Repeat weekly
 

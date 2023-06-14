@@ -22,4 +22,4 @@ make_tuesday()
 make_thursday()
 make_sunday()
 
-print("Carpools Made!")
+print("Carpools made!")
