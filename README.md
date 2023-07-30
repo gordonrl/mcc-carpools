@@ -5,7 +5,9 @@ The basic idea of this software is to make carpools as fair as possible through 
 
 I know this is a pretty long guide but I promise it's not that bad. I just wanted to be sure that anyone, no matter their computer science experience, can make this work so we can easily get fair carpools out for the club.
 
-Once again congratulations, and if you have any questions feel free to email me at gordonrl@umich.edu (or g.r.lewis@me.com if it’s past 2025 and I’m not responding with the first email).
+Once again congratulations, and if you have any questions feel free to email me at gordonrl@umich.edu (or g.r.lewis@me.com if it’s past 2025 and I’m not responding when you try my umich email).
+
+**Extremely Important Note: DO NOT change the responses form in any way, even the wording of the questions!!! The program will NOT work if you do this. If you need to change them either talk to me so I can edit the code or try editing the code yourself (maybe make a backup copy of the unedited version to be safe)**
 
 # How to use
 ## Setup
@@ -33,11 +35,13 @@ Video Tutorial: https://drive.google.com/file/d/1aN8o8KMpZJie4FCfX_ELGwUPImxirgr
     9. When installing on MacOS or Linux, when it tells you what to run in the terminal window, replace "Miniconda3-latest-MacOSX-x86_64.sh" with the full name of the installer you downloaded (I’m sorry I did all of this on mac so it’s a little trickier to translate to Windows and Linux without having done it).
     10. You will need to accept the terms once you open the installer. Additionally, say yes to all of the prompts that come up, such as “Wish the installer to initialize Miniconda3 by running conda init?”
     11. Once you're done downloading Conda, close your terminal and reopen it, type "conda deactivate", then "conda update conda" in the terminal to make sure everything is up to date.
+        - It will say "Proceed [y/n], type 'y'
     12. Once Conda is updated, type "conda config --set auto_activate_base false"
 
 The hard step is over! Yay! And you never have to do it again!!! There's just a tiny bit more to do before you'll be making carpools like it's nothing.
 
-2. Download this program from GitHub (Here's the link if you're reading this on Google Docs: https://github.com/gordonrl/mcc-carpools) and store it wherever you want on your computer as long as you can access it. To do this press "<> Code" then "Download ZIP" This will be called "mcc-carpools-main" when you download it. Feel free to rename it to whatever you want or leave it be. *If you choose to rename it, don't use spaces! use hyphens or underscores instead -- This will make navigating to the folder much easier*
+2. Download this program from GitHub (Here's the link if you're reading this on Google Docs: https://github.com/gordonrl/mcc-carpools) and store it wherever you want on your computer as long as you can access it. To do this press the green button that says "<> Code" then "Download ZIP" This will be called "mcc-carpools-main" when you download it. Feel free to rename it to whatever you want or leave it be. *If you choose to rename it, don't use spaces! use hyphens or underscores instead - 
+    - This will make navigating to the folder much easier* - This will download a ZIP file, once it’s on your computer you need to open it, this will open the actual folder.
 
 3. In your terminal, navigate to the carpools folder you downloaded in the previous step. I currently have the carpools folder on my desktop so this step looks like "cd /Users/Gordon/Desktop/mcc_carpools". To make sure you're in the right place, type "pwd" and that same set of slashes should pop up.
 
@@ -60,16 +64,17 @@ Video Tutorial: https://drive.google.com/file/d/14phRwsCR7qZR-0VtjIJBAqW3gcAkfmD
 4. Open Terminal and navigate to the carpools folder, this is done in the same was as step 3 of setup.
 
 5. Type "conda activate carpools", "(carpools)" should now show up on the leftmost side of the line you're typing on
+    -  "(carpools)" should now show up on the leftmost side of the line you're typing on
 
 6. Type "make carpools", if all goes well "Carpools made!" should show up in your terminal and there should be three new files, "tuesday.csv", "thursday.csv", and "sunday.csv" in your carpools folder.
 
-7. Create a new Google Sheet, upload the csv files made in the previous step. To do this in the sheet go "File"->"Import"->"Upload" then select one of "tuesday.csv", "thursday.csv", or "sunday.csv" (Unfortunately Google Sheets doesn't let you select multiple files at once for uploading so you'll have to do this step three times, once for each file). *For the first file you upload (probably "tuesday.csv")*, once the file is uploaded, select the dropdown undernearth "Import location" and select "Replace spreadsheet", you can leave everything else as it is (ignore the warning), then select "Import data". The process is the same for the next two files except this time *select "Insert new sheet(s) under "Import location"*. If you did this correctly then all three files should be in the same Google Sheet. There should be three tabs at the bottom, called "tuesday", "thursday", and "sunday".
+7. Create a new Google Sheet, upload the csv files made in the previous step. To do this in the sheet go "File"->"Import"->"Upload" then select one of "tuesday.csv", "thursday.csv", or "sunday.csv" (Unfortunately Google Sheets doesn't let you select multiple files at once for uploading so you'll have to do this step three times, once for each file). *For the first file you upload (probably "tuesday.csv")*, once the file is uploaded, select the dropdown underneath "Import location" and select "Replace spreadsheet", you can leave everything else as it is (ignore the warning), then select "Import data". The process is the same for the next two files except this time *select "Insert new sheet(s) under "Import location"*. If you did this correctly then all three files should be in the same Google Sheet. There should be three tabs at the bottom, called "tuesday", "thursday", and "sunday".
 
-8. Make the sheets look pretty. There are pictures (Carpool Upload BEFORE (https://drive.google.com/file/d/1zDHUIiNawpzN699VwboCTiPHn6ltkD64/view?usp=sharing) and Carpool Upload AFTER (https://drive.google.com/file/d/1fXrUFMP1J79LAhIcU-JDvDvF3CvVcOOa/view?usp=sharing)) in the Google Drive in the "Carpools" folder. Some of the beautification is probably unecessary but it took me like 30 seconds per sheet so it's not that bad. What really matters is that people can differentiate between cars and people adding their cars later on know how to make them look.
+8. Make the sheets look pretty. There are pictures (Carpool Upload BEFORE (https://drive.google.com/file/d/1zDHUIiNawpzN699VwboCTiPHn6ltkD64/view?usp=sharing) and Carpool Upload AFTER (https://drive.google.com/file/d/1fXrUFMP1J79LAhIcU-JDvDvF3CvVcOOa/view?usp=sharing)) in the Google Drive in the "Carpools" folder. Some of the beautification is probably unnecessary but it took me like 30 seconds per sheet so it's not that bad. What really matters is that people can differentiate between cars and people adding their cars later on know how to make them look.
 
 9. Share the Google Sheet. Change "General access" to "University of Michigan" then change the role (on the right) to "Editor", then copy the link to be put into the email/GroupMe.
 
-***Do not proceed until you are certain that the carpools are made and shared, the next steps will permanently the files you used to create the carpools***
+***Do not proceed until you are certain that the carpools are made and shared, the next steps will permanently delete the files you used to create the carpools***
 
 10. In Terminal, type "make clean" then "conda deactivate". This will delete "responses.csv", "dues.csv", "tuesday.csv", "thursday.csv", and "sunday.csv" in preparation for creating carpools next week.
 
@@ -77,7 +82,7 @@ Video Tutorial: https://drive.google.com/file/d/14phRwsCR7qZR-0VtjIJBAqW3gcAkfmD
 
 11. Repeat weekly
 
-***P.S. This software will only work if file format stays the same. If you do something like changing the questions (even just the wording of them!) on the Google Form or changing the format of the list of dues paying members the software will not work properly!!!!! If you need to do this either email me so I can edit the software or have a go at it yourself if you know what you're doing***
+***P.S. This software will only work if the file format stays the same. If you do something like changing the questions (even just the wording of them!) on the Google Form or changing the format of the list of dues paying members the software will not work properly!!!!! If you need to do this either email me so I can edit the software or have a go at it yourself if you know what you're doing***
 
 # FAQ
 
@@ -92,7 +97,7 @@ The most likely cause of this is that your uniqname in the carpool Google form d
 Another possible reason is that you made a mistake when filling out the Google Form. For example, if you say you're going to be a Rider on Tuesday but then accidentally select "Not Going" for Tuesday location then you won't be eligible to be put into a car on Tuesday. I tried to reduce the chances of things like this happening as much as possible (it was a big issue with the previous software) but there's only so much I can do without falling back on making things overly-complicated again.
 
 ## Why is my car not being added to the carpools?
-This would happen if you make a mistake when filling out the Google Form such as saying no to "Will you be driving at least one day this week?" or accidentally selecting "Not Going" as your location. The reason you are kept out of the carpool is these scenarios is to avoid confusion and having to cancel cars. I think people would be unhappy if they're put in a car incorrectly then can't go to the gym rather than just not being put in a car in the first place -- one is the result of randomization while the other is human error. If this happens and you still want to drive then you can still add your car to the spreadsheet manually once it is sent out.
+This would happen if you make a mistake when filling out the Google Form such as saying no to "Will you be driving at least one day this week?" or accidentally selecting "Not Going" as your location. The reason you are kept out of the carpool in these scenarios is to avoid confusion and having to cancel cars. I think people would be unhappy if they're put in a car incorrectly then can't go to the gym rather than just not being put in a car in the first place -- one is the result of randomization while the other is human error. If this happens and you still want to drive then you can add your car to the spreadsheet manually once it is sent out.
 
 
 # How it works (Optional)
