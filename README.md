@@ -56,6 +56,7 @@ Video Tutorial: https://drive.google.com/file/d/14phRwsCR7qZR-0VtjIJBAqW3gcAkfmD
 1. Download the carpool form responses for this week and rename the file to to "responses.csv". To do this open the Google Form, go to "responses", select the three vertical dots next to "View in Sheets", and select "Download responses (.csv)." Once you add the download to your computer (I just put in on my desktop on Mac) you can rename it to "responses.csv"
 
 2. Download list of dues paying members as a csv and rename to "dues.csv". To do this open the dues paying members Google Sheet, select "file" under the name of the sheet, select "download", and finally "Comma Separated Values (.csv)". You can rename this the same way you renamed the responses.
+    - **Note that the list of dues paying members needs to look like this: https://drive.google.com/file/d/13Ly9IN04iw73q3L9kjvpWl5R2TV5bATI/view?usp=share_link This may mean you need to copy and paste a list of uniqnames from somewhere else. Here's an example from the year I made the software: https://drive.google.com/file/d/1twVY93owxs0osnrRkBlt7NyyxT0Q6GdN/view?usp=share_link**
 
 ***The responses NEED to be called "responses.csv" and the list of dues paying members NEEDS to be called "dues.csv" otherwise the program will not work***
 
